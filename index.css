@@ -1,0 +1,35 @@
+html {
+    background-color: #343434;
+    --led-rows: 8;
+    --led-columns: 32;
+}
+
+#colorPicker {
+    display: block;
+
+}
+
+#colorPicker, .led {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: none;
+    height: 50px;
+    margin: 0 auto;
+    width: 50px;
+    color: white;
+}
+
+#LEDMatrix {
+    overflow-x: scroll;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 5px;
+    grid-template-columns: repeat(var(--led-columns), 1fr);
+    grid-template-rows: repeat(var(--led-rows), 50px);
+    margin: 10px;
+}
+
+#eraserContainer {
+    color: #fff;
+    margin: 4px auto;
+    width: fit-content;
+}
