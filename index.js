@@ -11,7 +11,7 @@ function setupBoard() {
     for (let i = 0; i < rows * columns; i++) {
         let LED = document.createElement('div');
         LED.classList.add("led");
-        LED.innerHTML = `<div hidden>${i} | ${findIndex(i)}</div>`;
+        // LED.innerHTML = `${i} | ${findIndex(i)}`; // debug line
         LED.dataset.matrixIndex = findIndex(i);
         LED.addEventListener('mousedown', (event) => paintPixel(event));
         LEDMatrix.appendChild(LED);
@@ -35,6 +35,20 @@ function paintPixel(e) {
     const pixel = e.target;
     pixel.style.backgroundColor = eraseState ? '' : paintbrush;
     matrixData[pixel.dataset.matrixIndex] = eraseState ? 'off' : paintbrush;
+    sendData();
+}
+
+async function sendData(){
+    const response  = await fetch("", {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(matrixData)
+    });
+    return response.json;
 }
 
 window.addEventListener("load", () => setupBoard());
