@@ -39,14 +39,12 @@ function paintPixel(e) {
 }
 
 async function sendData(){
-    const response  = await fetch("", {
+    const response  = await fetch("http://sandbox:3000/matrix", {
         method: "POST",
-        mode: "cors",
-        cache: "no-cache",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(matrixData)
+        body: JSON.stringify({ 'LEDMatrix': matrixData })
     });
     return response.json;
 }
